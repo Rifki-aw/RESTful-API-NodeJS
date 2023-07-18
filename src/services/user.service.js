@@ -27,4 +27,12 @@ const register =  async(body) => {
     return isSuccess;
 };
 
-module.exports = { register };
+// 28. 
+const login = async(body) => {
+    // 29. 
+    const user = users.filter((user) => (user.email === body.email && user.password === body.password))[0];
+    
+    return user;
+};
+
+module.exports = { register, login };

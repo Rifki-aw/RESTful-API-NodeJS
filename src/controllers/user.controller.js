@@ -39,4 +39,38 @@ const register = async(req, res) => {
     };
 };
 
-module.exports = { register }
+// 25. membaut fungsi login, yang akan dijalankan secara asinkronus/bersamaan/paralel
+const login = async(req, res) => {
+    const { body } = req;
+
+    // 26. validasi dari data yang diterima
+    if ( !body.email || !body.password ) {
+        return res.status(400).json({ 
+            status : 'Fail',
+            message : 'Email dan password tidak sesuai!!' 
+        });
+    };
+
+    // 27. 
+    try {
+        const user = await userService.login(body);
+
+        if (!user) {
+            error
+        }
+
+        return res.status(200).json({
+            status : 'Success',
+            message : 'Anda berhasil login!!',
+            data : user
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            status : 'Fail',
+            message : 'Login Gagal'
+        });
+    };
+};
+
+module.exports = { register, login }
