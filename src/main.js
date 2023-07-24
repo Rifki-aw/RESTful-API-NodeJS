@@ -1,14 +1,17 @@
+require('dotenv').config()
 // 1. import framework express
 const express = require('express');
 
 // 22. Mengimpor router userRouter dari file user.route.js yang berisi definisi rute terkait pengguna
 const userRouter = require('./routes/user.route');
 
+require('./middleware/passport')
+
 // 2. membuat aplikasi dari express
 const app = express();
 
 // 3. membuat PORT lokal
-const PORT = 5000;
+const PORT = process.env.PORT || 5000// 5000
 
 // 7. agar modul express bisa membaca json yang telah dikirim oleh user
 app.use(express.json());
@@ -20,3 +23,4 @@ app.use('/user', userRouter);
 app.listen(PORT, () => {
     console.log(`Server telah berhasil jalan di port ${PORT}!!`);
 });
+
