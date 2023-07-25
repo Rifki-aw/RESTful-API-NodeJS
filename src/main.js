@@ -3,7 +3,8 @@ require('dotenv').config()
 const express = require('express');
 
 // 22. Mengimpor router userRouter dari file user.route.js yang berisi definisi rute terkait pengguna
-const userRouter = require('./routes/user.route');
+const userRouter = require('./routes/user.route')
+const todoRouter = require('./routes/todos.route');
 
 require('./middleware/passport')
 
@@ -18,6 +19,7 @@ app.use(express.json());
 
 // 23. Menggunakan router userRouter untuk rute yang dimulai dengan '/user'
 app.use('/user', userRouter);
+app.use('/todos', todoRouter);
 
 // 4. membuat listen yang dijalankan di lokal
 app.listen(PORT, () => {
